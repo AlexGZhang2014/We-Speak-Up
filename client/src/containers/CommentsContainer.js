@@ -33,20 +33,22 @@ class CommentsContainer extends Component {
     return (
       <div className="posts">
         <form onSubmit={this.handleSubmit}>
-          <input
+          <textarea
             type="text"
             name="content"
             value={this.state.content}
             onChange={this.handleChange}
-            placeholder="content">
-          </input>
+            placeholder="Leave a comment">
+          </textarea>
+          <br></br>
           <input
             type="text"
             name="author"
             value={this.state.author}
             onChange={this.handleChange}
-            placeholder="author">
+            placeholder="Your username">
           </input>
+          <br></br>
           <input type="submit"></input>
         </form>
         <Comments comments={this.state.comments} />

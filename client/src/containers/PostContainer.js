@@ -40,22 +40,25 @@ class PostContainer extends Component {
             name="title"
             value={this.state.title}
             onChange={this.handleChange}
-            placeholder="title">
+            placeholder="Post title">
           </input>
-          <input
+          <br></br><br></br>
+          <textarea
             type="text"
             name="content"
             value={this.state.content}
             onChange={this.handleChange}
-            placeholder="content">
-          </input>
+            placeholder="Post content">
+          </textarea>
+          <br></br>
           <input
             type="text"
             name="author"
             value={this.state.author}
             onChange={this.handleChange}
-            placeholder="author">
+            placeholder="Your username">
           </input>
+          <br></br>
           <input type="submit"></input>
         </form>
         <Posts posts={this.state.posts}/>
