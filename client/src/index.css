@@ -3,6 +3,9 @@ body {
   padding: 0;
   background-image: url("https://i.ytimg.com/vi/YpTAw3Q8zbk/maxresdefault.jpg");
   font-family: 'Open Sans Condensed', sans-serif;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
