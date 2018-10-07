@@ -31,6 +31,10 @@ class CommentsContainer extends Component {
     })
   }
 
+  componentDidMount() {
+    this.props.fetchComments();
+  }
+
   render() {
     return (
       <div className="posts">
