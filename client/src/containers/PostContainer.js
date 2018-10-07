@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Posts from '../components/Posts';
+import { connect } from 'react-redux';
+import { fetchPosts, addPost } from '../actions/postActions'
 
 class PostContainer extends Component {
   constructor(props) {
@@ -7,8 +9,7 @@ class PostContainer extends Component {
     this.state = {
       title: '',
       content: '',
-      author: '',
-      posts: []
+      author: ''
     }
   }
 
@@ -21,14 +22,16 @@ class PostContainer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.props.addPost(this.state);
     this.setState({
-      ...this.state,
-      posts: this.state.posts.concat({
-        title: this.state.title,
-        content: this.state.content,
-        author: this.state.author
-      })
+      title: '',
+      content: '',
+      author: ''
     })
+  }
+
+  componentDidMount() {
+    this.props.fetchPosts();
   }
 
   render() {
@@ -61,10 +64,19 @@ class PostContainer extends Component {
           <br></br>
           <input type="submit"></input>
         </form>
-        <Posts posts={this.state.posts}/>
+        <Posts posts={this.props.posts}/>
       </div>
     )
   }
 }
 
-export default PostContainer
+const mapStateToProps = state => ({
+  posts: state.posts.posts
+});
+
+const mapDispatchToProps = dispatch => ({
+  addPost: state => dispatch(addPost(state)),
+  fetchPosts: () => dispatch(fetchPosts())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostContainer)
