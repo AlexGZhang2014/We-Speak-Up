@@ -77,6 +77,7 @@ class CommentsContainer extends Component {
         <Comments
           comments={this.props.comments}
           post={this.props.post}
+          deleteComment={this.props.deleteComment}
           />
       </div>
     )
