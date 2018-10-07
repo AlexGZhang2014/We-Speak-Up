@@ -74,7 +74,10 @@ class CommentsContainer extends Component {
       <div className="posts">
         <button onClick={this.toggleAddStatus}>Add a comment</button>
         {this.displayAddCommentForm()}
-        <Comments comments={this.props.comments} />
+        <Comments
+          comments={this.props.comments}
+          post={this.props.post}
+          />
       </div>
     )
   }
