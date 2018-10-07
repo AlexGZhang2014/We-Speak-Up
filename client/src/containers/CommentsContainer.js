@@ -9,7 +9,6 @@ class CommentsContainer extends Component {
     this.state = {
       content: '',
       author: '',
-      comments: []
     }
   }
 
@@ -57,7 +56,7 @@ class CommentsContainer extends Component {
           <br></br>
           <input type="submit"></input>
         </form>
-        <Comments comments={this.state.comments} />
+        <Comments comments={this.props.comments} />
       </div>
     )
   }
