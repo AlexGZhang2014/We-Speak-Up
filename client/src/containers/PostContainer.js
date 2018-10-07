@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Posts from '../components/Posts';
 import { connect } from 'react-redux';
-import { fetchPosts, addPost, deletePost, updatePost } from '../actions/postActions'
+import { fetchPosts, addPost, deletePost, updatePost } from '../actions/postActions';
 
 class PostContainer extends Component {
   constructor(props) {
@@ -137,7 +137,7 @@ const mapDispatchToProps = dispatch => ({
   addPost: state => dispatch(addPost(state)),
   fetchPosts: () => dispatch(fetchPosts()),
   deletePost: id => dispatch(deletePost(id)),
-  updatePost: (state, id) => dispatch(updatePost(state, id))
-})
+  updatePost: (state) => dispatch(updatePost(state))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostContainer)
