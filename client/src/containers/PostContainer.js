@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Posts from '../components/Posts';
 import { connect } from 'react-redux';
-import { fetchPosts, addPost } from '../actions/postActions'
+import { fetchPosts, addPost, deletePost, updatePost } from '../actions/postActions'
 
 class PostContainer extends Component {
   constructor(props) {
@@ -9,7 +9,8 @@ class PostContainer extends Component {
     this.state = {
       title: '',
       content: '',
-      author: ''
+      author: '',
+      editId: null
     }
   }
 
@@ -24,6 +25,7 @@ class PostContainer extends Component {
     event.preventDefault();
     this.props.addPost(this.state);
     this.setState({
+      ...this.state,
       title: '',
       content: '',
       author: ''
@@ -32,6 +34,56 @@ class PostContainer extends Component {
 
   componentDidMount() {
     this.props.fetchPosts();
+  }
+
+  handleUpdatePost = (event) => {
+    event.preventDefault();
+    this.props.updatePost(this.state);
+    this.setState({
+      title: '',
+      content: '',
+      author: '',
+      editId: null
+    })
+  }
+
+  displayEditForm = () => {
+    return (
+      <form onSubmit={this.handleUpdatePost}>
+        <input
+          type="text"
+          name="title"
+          value={this.state.title}
+          onChange={this.handleChange}
+          placeholder="Post title">
+        </input>
+        <br></br><br></br>
+        <textarea
+          type="text"
+          name="content"
+          value={this.state.content}
+          onChange={this.handleChange}
+          placeholder="Post content">
+        </textarea>
+        <br></br>
+        <input
+          type="text"
+          name="author"
+          value={this.state.author}
+          onChange={this.handleChange}
+          placeholder="Your username">
+        </input>
+        <br></br>
+        <input type="submit"></input>
+      </form>
+    );
+  }
+
+  toggleEditStatus = (id) => {
+    this.setState({
+      ...this.state,
+      editId: id
+    })
   }
 
   render() {
@@ -64,7 +116,14 @@ class PostContainer extends Component {
           <br></br>
           <input type="submit"></input>
         </form>
-        <Posts posts={this.props.posts}/>
+        <Posts
+          posts={this.props.posts}
+          deletePost={this.props.deletePost}
+          updatePost={this.props.updatePost}
+          displayEditForm={this.displayEditForm}
+          editId={this.state.editId}
+          toggleEditStatus={this.toggleEditStatus}
+          />
       </div>
     )
   }
@@ -76,7 +135,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   addPost: state => dispatch(addPost(state)),
-  fetchPosts: () => dispatch(fetchPosts())
+  fetchPosts: () => dispatch(fetchPosts()),
+  deletePost: id => dispatch(deletePost(id)),
+  updatePost: (state, id) => dispatch(updatePost(state, id))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostContainer)
