@@ -90,6 +90,7 @@ class PostContainer extends Component {
     return (
       <div className="posts">
         <form onSubmit={this.handleSubmit}>
+          <h2>Write a New Post Here</h2>
           <input
             type="text"
             name="title"
