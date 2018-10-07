@@ -119,7 +119,6 @@ class PostContainer extends Component {
         <Posts
           posts={this.props.posts}
           deletePost={this.props.deletePost}
-          updatePost={this.props.updatePost}
           displayEditForm={this.displayEditForm}
           editId={this.state.editId}
           toggleEditStatus={this.toggleEditStatus}

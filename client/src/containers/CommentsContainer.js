@@ -9,7 +9,8 @@ class CommentsContainer extends Component {
     this.state = {
       content: '',
       author: '',
-      addCommentPostId: null
+      addCommentPostId: null,
+      editCommentId: null
     }
   }
 
@@ -24,6 +25,7 @@ class CommentsContainer extends Component {
     event.preventDefault();
     this.props.addComment(this.state);
     this.setState({
+      ...this.state,
       content: '',
       author: '',
       addCommentPostId: null
@@ -69,6 +71,48 @@ class CommentsContainer extends Component {
     }
   }
 
+  toggleEditStatus = (id) => {
+    this.setState({
+      ...this.state,
+      editCommentId: id
+    })
+  }
+
+  displayEditForm = () => {
+    return (
+      <form onSubmit={this.handleUpdateComment}>
+        <textarea
+          type="text"
+          name="content"
+          value={this.state.content}
+          onChange={this.handleChange}
+          placeholder="Your comment">
+        </textarea>
+        <br></br>
+        <input
+          type="text"
+          name="author"
+          value={this.state.author}
+          onChange={this.handleChange}
+          placeholder="Your username">
+        </input>
+        <br></br>
+        <input type="submit"></input>
+      </form>
+    );
+  }
+
+  handleUpdateComment = (event) => {
+    event.preventDefault();
+    this.props.updateComment(this.state);
+    this.setState({
+      ...this.state,
+      content: '',
+      author: '',
+      editCommentId: null
+    })
+  }
+
   render() {
     return (
       <div className="posts">
@@ -78,6 +122,9 @@ class CommentsContainer extends Component {
           comments={this.props.comments}
           post={this.props.post}
           deleteComment={this.props.deleteComment}
+          toggleEditStatus={this.toggleEditStatus}
+          editCommentId={this.state.editCommentId}
+          displayEditForm={this.displayEditForm}
           />
       </div>
     )

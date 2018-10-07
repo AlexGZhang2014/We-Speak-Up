@@ -6,6 +6,9 @@ class Comments extends Component {
     const comments = this.props.comments.filter(comment => comment.post.id === this.props.post.id).map(comment => <Comment
       comment={comment}
       deleteComment={this.props.deleteComment}
+      toggleEditStatus={this.props.toggleEditStatus}
+      editCommentId={this.props.editCommentId}
+      displayEditForm={this.props.displayEditForm}
       />)
     return (
       <div>
