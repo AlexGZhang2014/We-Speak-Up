@@ -12,7 +12,7 @@ class Post extends Component {
         <button onClick={() => this.props.deletePost(this.props.post.id)}>Delete this post</button>
         {this.props.editId ? this.props.displayEditForm() : null}
         <h4>Add a comment below: </h4>
-        <CommentsContainer />
+        <CommentsContainer post={this.props.post}/>
       </div>
     )
   }

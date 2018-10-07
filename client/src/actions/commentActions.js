@@ -16,7 +16,7 @@ export function addComment(state) {
       comment: {
         content: state.content,
         author: state.author,
-        postId: state.post.id
+        post_id: state.addCommentPostId
       }
     }
 

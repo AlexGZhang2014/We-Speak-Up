@@ -9,6 +9,7 @@ class CommentsContainer extends Component {
     this.state = {
       content: '',
       author: '',
+      addCommentPostId: null
     }
   }
 
@@ -21,12 +22,11 @@ class CommentsContainer extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
+    this.props.addComment(this.state);
     this.setState({
-      ...this.state,
-      comments: this.state.comments.concat({
-        content: this.state.content,
-        author: this.state.author
-      })
+      content: '',
+      author: '',
+      addCommentPostId: null
     })
   }
 
@@ -34,9 +34,16 @@ class CommentsContainer extends Component {
     this.props.fetchComments();
   }
 
-  render() {
-    return (
-      <div className="posts">
+  toggleAddStatus = () => {
+    this.setState({
+      ...this.state,
+      addCommentPostId: this.props.post.id
+    })
+  }
+
+  displayAddCommentForm = () => {
+    if (this.state.addCommentPostId) {
+      return (
         <form onSubmit={this.handleSubmit}>
           <textarea
             type="text"
@@ -56,6 +63,17 @@ class CommentsContainer extends Component {
           <br></br>
           <input type="submit"></input>
         </form>
+      )
+    } else {
+      return null;
+    }
+  }
+
+  render() {
+    return (
+      <div className="posts">
+        <button onClick={this.toggleAddStatus}>Add a comment</button>
+        {this.displayAddCommentForm()}
         <Comments comments={this.props.comments} />
       </div>
     )
