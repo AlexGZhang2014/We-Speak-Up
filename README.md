@@ -29,4 +29,4 @@ This app is available as open source under the terms of the [MIT License](https:
 
 ## Code of Conduct
 
-Everyone interacting in the Collect-It project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/'AlexGZhang2014'/We-Speak-Up/blob/master/CODE_OF_CONDUCT.md).
+Everyone interacting in the We-Speak-Up project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/'AlexGZhang2014'/We-Speak-Up/blob/master/CODE_OF_CONDUCT.md).
